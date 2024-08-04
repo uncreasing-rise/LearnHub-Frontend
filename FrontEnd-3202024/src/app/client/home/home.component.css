@@ -1,0 +1,12 @@
+
+.small-image {
+    width: 230px;
+    height: 230px;
+  }
+  .save-for-later-btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px; /* Điều chỉnh chiều rộng của nút */
+    height: 40px; /* Điều chỉnh chiều cao của nút */
+}

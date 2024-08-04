@@ -1,0 +1,65 @@
+<div class="body">
+  <div id="courses" class="our-portfolio section">
+    <div class="container">
+      <div class="row justify-content-end">
+        <div class="col-lg-9 col-md-7">
+          <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
+            <h4>Do the <em>Quiz</em></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
+    <h4 style="margin-left: 200px;">Total Point:  <em>{{quiz.totalPoint}} Points</em></h4>
+  </div>
+  <div class="container-fluid" data-wow-duration="1s" data-wow-delay="0.7s">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="course-carousel" style="margin-left: 200px; border: 1px solid #ccc; padding: 20px;">
+          <div *ngIf="!showQuiz">
+            <button (click)="startQuiz()">Start Quiz</button>
+          </div>
+          <div *ngIf="showQuiz">
+            <div *ngIf="quiz">
+              <h2>{{ quiz.quizTitle }}</h2>
+              <!-- Display questions -->
+              <div *ngFor="let question of quiz.question; let i = index">
+                <h3 style="font-weight: 650;">Question {{ i + 1 }}: {{ question.text }} 
+                  <span style="font-weight: normal;">({{ question.point }} points)</span>
+              </h3>
+                              <!-- Display options -->
+                <div *ngFor="let answer of question.answers">
+                  <label style="font-weight: 500;">
+                    <input type="radio" name="question{{ question.id }}" [value]="answer.id"
+                      (change)="selectAnswer(question.id, answer.id)">
+                    {{ answer.text }}
+                  </label>
+                </div>
+              </div>
+              
+              <button (click)="submitAnswer()">Submit Answers</button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+      <div class="col-lg-3">
+        <div class="section-heading">
+          <h4 class="heading-text" style="color: #726AE3;">Submit History</h4>
+          <button (click)="loadQuizHistory()">Load Quiz History</button>
+          <div *ngIf="quizHistory" style="margin-top: 20px; padding: 10px; border: 1px solid #ccc; border-radius: 5px;">
+            <h2 style="font-size: 1.5em; color: #333;">Quiz History</h2>
+            <ul style="list-style-type: none; padding: 0;">
+                <li *ngFor="let history of quizHistory" style="margin-bottom: 10px; border-bottom: 1px solid #ccc; padding-bottom: 10px;">
+                  <p style="margin: 0;color: black;"><strong>Time:</strong> {{ history.startTime | date:'medium' }}</p>
+                  <p style="margin: 0; color: black;"><strong>Your Points:</strong> <span style="font-weight: bold; color: green;">{{ history.point }} / {{quiz.totalPoint}}</span></p>
+                </li>
+            </ul>
+        </div>
+        
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

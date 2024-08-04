@@ -1,0 +1,43 @@
+/* CSS for Category Section */
+.body{
+    margin-left: 60px;
+    margin-right: 60px;
+  
+  }
+  #courses .search-filters {
+    margin-top: 20px;
+  }
+  
+  #courses .input-group {
+    margin-bottom: 10px;
+  }
+  
+  #courses .input-group-text {
+    background-color: #007bff;
+    color: #fff;
+  }
+  
+  #courses .form-control {
+    border-color: #007bff;
+  }
+  
+  #courses .form-control:focus {
+    border-color: #007bff;
+    box-shadow: none;
+  }
+  
+  
+  
+  
+  
+  .visually-hidden {
+    position: absolute;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+  }
+  

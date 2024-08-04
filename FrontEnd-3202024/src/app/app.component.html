@@ -1,0 +1,263 @@
+<div id="js-preloader" class="js-preloader">
+  <div class="preloader-inner">
+    <span class="dot"></span>
+    <div class="dots">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</div>
+<header style="z-index: 9999 !important;" class="z-3 header-area header-sticky wow slideInDown"
+  data-wow-duration="0.75s" data-wow-delay="0s">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a style="margin-top: 30px !important;" href="index.html" class="logo">
+            <div style=" display: flex; align-items: center; padding: 2px; border: 1px solid #40ff00;" class="flex">
+              <p style="color: white; font-size: 25px; padding: 0px 2px;  background: #40ff00;">
+                LearnHub
+              </p>
+            </div>
+
+          </a>
+          <ul class="nav">
+            <li class="scroll-to-section"><a routerLink="/">Home</a></li>
+            <li class="scroll-to-section"><a routerLink="course-home">Course</a></li>
+            <li class="scroll-to-section"><a routerLink="list-blogs">Blog</a></li>
+            <!-- <li class="scroll-to-section"><a routerLink="cart"> -->
+                <!-- @if(isEmptyCart){
+                <img width="25" height="25" src="https://img.icons8.com/ios/25/000000/shopping-cart-loaded--v1.png"
+                  alt="shopping-cart-loaded--v1" />
+
+                } @else {
+                <img width="25" height="25" src="https://img.icons8.com/ios/25/add-shopping-cart--v1.png"
+                  alt="add-shopping-cart--v1" />
+                }</a></li> -->
+            @if (userInfo) {
+            <li>
+              <div class="dropdown">
+                <button
+                  style="border: none; padding: 5px 20px !important; color: white !important; background-color: #40ff00 !important;border-radius: 25px;"
+                  type="button" class="border-first-button" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <img style="    width: 30px;
+                  height: 30px;
+                  border-radius: 15px;"
+                    src="https://www.shutterstock.com/image-vector/default-avatar-profile-icon-social-600nw-1677509740.jpg"
+                    alt="">
+                  <span style="margin-left: 10px;">{{userInfo.fullname}}</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" routerLink="userInfo">Info</a>
+                  <a class="dropdown-item" (click)="logout()">Logout</a>
+
+                </div>
+              </div>
+
+            </li>
+            <li style="padding-left: 5px;">
+              <button (click)="logout()" style="border: none; background-color: transparent;" type="button"
+                class="border-first-button" data-bs-toggle="modal" data-bs-target="#signin">
+                <a style="
+                 background-color: #b1b1b1 !important;
+                 border:1px solid #b1b1b1 !important; color: white !important;">Logout</a>
+              </button>
+            </li>
+            } @else {
+            <li>
+              <button style="border: none; background-color: transparent;" type="button" class="border-first-button"
+                data-bs-toggle="modal" data-bs-target="#signup">
+                <a style="
+                background-color: #40ff00 !important;
+                padding: 0px 20px !important; color: white !important;">Sign up</a>
+              </button>
+            </li>
+            <li style="padding-left: 5px;">
+              <button style="border: none; background-color: transparent;" type="button" class="border-first-button"
+                data-bs-toggle="modal" data-bs-target="#signin">
+                <a style="
+                 background-color: #b1b1b1 !important;
+                 border:1px solid #b1b1b1 !important; color: white !important;">Sign in</a>
+              </button>
+            </li>
+            }
+
+
+          </ul>
+          <a class='menu-trigger'>
+            <span>Menu</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+<div class="modal  fade" id="signup" tabindex="-1" aria-labelledby="signupLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Sign up</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 15px 40px; ">
+        <div style="width: 100%; text-align: left;">Email</div>
+        <input placeholder="Email" (change)="onChange('email',$event)"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+        <div style="width: 100%; text-align: left;">Name</div>
+        <input (change)="onChange('name',$event)" placeholder="Name"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+        <div style="width: 100%; text-align: left;">Password</div>
+        <input (change)="onChange('password',$event)" placeholder="Password" type="password"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray;" />
+
+        <div style="width: 100%; margin-bottom: 20px; text-align: left;">Already have an account? <span
+            style="color: rgb(109, 109, 241);">Sign in</span></div>
+        <div style="width: 100%; text-align: left;"><button type=" button" class="login-with-google-btn">
+            Sign in with Google
+          </button></div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="onSignup()" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal  fade" id="signin" tabindex="-1" aria-labelledby="signinLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Sign in</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 15px 40px;">
+        <div style="width: 100%; text-align: left;">Email</div>
+        <input (change)="onChange('emailLogin',$event)" placeholder="Email"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+        <div style="width: 100%; text-align: left;">Password</div>
+        <input (change)="onChange('passwordLogin',$event)" placeholder="Password" type="password"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray;" />
+        <div (click)="onForgotPassword()"
+          style="width: 100%; text-align: left; color: rgb(109, 109, 241); margin-bottom: 20px;">Forgot password?
+        </div>
+        <div style="width: 100%; margin-bottom: 20px; text-align: left;">
+          Do not have an account? <span style="color: rgb(109, 109, 241);">Sign up</span></div>
+        <div style="width: 100%; text-align: left;"><button type=" button" class="login-with-google-btn">
+            Sign in with Google
+          </button></div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="onSignin()" data-bs-dismiss="modal" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+@if (isVerifyScreen) {
+<div style="display: block;" class="modal show" id="verify" tabindex="-1" aria-labelledby="verifyLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Verify your email</h1>
+        <button (click)="onClosePopupVerify()" type="button" class="btn-close" data-bs-dismiss="modal"
+          aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 15px 40px;">
+
+        <div style="width: 100%; text-align: left;">OTP</div>
+        <input placeholder="OTP" (change)="onChange('otp',$event)"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="onVerifySignup()" data-bs-dismiss="modal" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+}
+@if(isForgotPasswordScreen) {
+<div style="display: block;" class="modal show" id="verify" tabindex="-1" aria-labelledby="verifyLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Forgot password</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 15px 40px;">
+        <div style="width: 100%; text-align: left;">Email</div>
+        <input placeholder="Email" (change)="onChange('emailForgetPassword',$event)"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="onSubmitEmailForgetPassword()" data-bs-dismiss="modal"
+          class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+@if(isVerifyPasswordScreen) {
+<div style="display: block;" class="modal show" id="verify" tabindex="-1" aria-labelledby="verifyLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Forgot password</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 15px 40px;">
+        <div style="width: 100%; text-align: left;">Email</div>
+        <input placeholder="Email" value={{emailForgetPassword}} readonly
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+        <div style="width: 100%; text-align: left;">Otp</div>
+        <input placeholder="Otp" (change)="onChange('otpForgetPassword',$event)"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+        <div style="width: 100%; text-align: left;">New Password</div>
+        <input placeholder="New Password" (change)="onChange('newPassword',$event)"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="onSubmitVerifyPassword()" data-bs-dismiss="modal"
+          class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+<router-outlet></router-outlet>
+   <footer class="text-center text-lg-start bg-dark text-muted">
+    <section class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom">
+      <div class="me-5 d-none d-lg-block text-light" style="margin-bottom: -24px;">
+        <span>Get connected with LearnHub on social networks:</span>
+      </div>
+      <div class="social-links">
+        <a href=""><i class="fab fa-facebook-f"></i></a>
+        <a href=""><i class="fab fa-instagram"></i></a>
+        <a href=""><i class="fab fa-twitter"></i></a>
+        <a href=""><i class="fab fa-github"></i></a>
+        <a href=""><i class="fab fa-linkedin-in"></i></a>
+      </div>
+    </section>
+    <div class="text-center p-4 text-light bg-dark" style="background-color: rgba(0, 0, 0, 0.05);">
+      Product made by swp sp:
+      <a class="text-reset fw-bold text-light bg-dark" href="https://mdbootstrap.com/">www.google.com</a>
+    </div>
+  </footer>

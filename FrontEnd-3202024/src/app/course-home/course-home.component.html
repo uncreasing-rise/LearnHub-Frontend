@@ -1,0 +1,108 @@
+<div class="body">
+
+
+  <div id="courses" class="our-portfolio section">
+    <div class="container">
+      <div class="row justify-content-end">
+        <div class="col-lg-9 col-md-7">
+          <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
+            <h4>Browse <em>Courses</em></h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+
+  <div class="container-fluid" data-wow-duration="1s" data-wow-delay="0.7s">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="course-carousel"
+          style="display: flex; justify-content: flex-start; flex-wrap: wrap; margin-left: 150px; margin-right: 100px;">
+          <div *ngFor="let course of pagedCourses; trackBy: trackByIdx" class="item col-lg-4" style="margin-top: 20px;">
+            <!-- Your course item HTML goes here -->
+            <a [routerLink]="['courses/showSectionAndVideo', course.courseID]"
+              style="width: 287px; height: 368px; display: block;">
+              <div class="portfolio-item" style="width: 287px; height: 368px;">
+                <div style="padding: 10px;" class="thumb">
+                  <img [src]="course.image || 'default-image-url'" alt=""
+                    style="width: 270px; height: 151px; object-fit: cover; border-radius: 2px;">
+                </div>
+                <div class="down-content"
+                  style="display: flex; text-align: left; padding: 5px 10px !important; justify-content: flex-start; flex-direction: column;">
+                  <p style="text-align: left;">{{ course.level }}</p>
+                  <h4>{{ course.courseTitle }}</h4>
+                  <p>{{course.courseDesY}}</p>
+                  <div style="display: flex; justify-content: flex-start; align-items: center;">
+                    <p style="margin-right: 5px; color: #40ff00;">{{ course.ratings }}</p>
+                    <span style="margin-right: 5px; display: flex;">
+                      <img *ngFor="let star of [1, 2, 3, 4]" width="20" height="20"
+                        src="https://img.icons8.com/fluency/20/star--v1.png" alt="star--v1" />
+                    </span>
+                    <span style="color: #b1b1b1;">({{ course.countRating }})</span>
+                  </div>
+                  <div style="display: flex; justify-content: space-between; align-items: center;">
+            
+               
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        <ul class="pagination"
+          style="margin-top: 35px; margin-bottom: 20px; list-style: none; display: flex; justify-content: center;">
+          <li *ngFor="let page of totalPagesArray" (click)="changePage(page)" [class.active]="currentPage === page"
+            style="margin-right: 5px;">
+            <a href="javascript:void(0)"
+              style="text-decoration: none; padding: 5px 10px; border: 1px solid #ccc; border-radius: 3px; background-color: {{ currentPage === page ? '#007bff' : '#fff' }}; color: {{ currentPage === page ? '#fff' : '#333' }}">{{
+              page }}</a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-3 search-course-section">
+        <div class="search-filters">
+          <div class="input-group" >
+            <input type="text" style="margin-right: 5px; padding-bottom: 2px;" class="form-control search-input" placeholder="Search" [(ngModel)]="searchTerm"
+              (ngModelChange)="filterCourses()">
+            <div class="input-group-append">
+              <span class="input-group-text search-icon"><i class="fas fa-search"></i></span>
+            </div>
+          </div>
+          <!-- <div class="input-group mt-3 price-filter">
+            <input type="number" class="form-control price-input" placeholder="Min Price" [(ngModel)]="minValues"
+              (ngModelChange)="filterCourses()" min="0">
+            <div class="input-group-append">
+              <span class="input-group-text">Min</span>
+            </div>
+          </div> -->
+          <!-- <div class="input-group mt-3 price-filter">
+            <input type="number" class="form-control price-input" placeholder="Max Price" [(ngModel)]="maxValues"
+              (ngModelChange)="filterCourses()" min="0">
+            <div class="input-group-append">
+              <span class="input-group-text">Max</span>
+            </div>
+          </div> -->
+        </div>
+        <div class="section-heading">
+          <h4 class="heading-text" style="color: #726AE3;">Choose a Category</h4>
+          <ul class="category-list">
+            <li *ngFor="let category of listCategory" class="category-item">
+              <input  type="radio" style="" id="category{{category.id}}" name="selectedCategory" [(ngModel)]="selectedCategory"
+                [value]="category" (change)="filterCourses()">
+              <label for="category{{category.id}}" class="category-label" style=" font-family: sans-serif; font-size: x-large; margin-left: 10px;">{{ category.categoryName }}</label>
+              <div class="check"></div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,494 @@
+<header style="z-index: 9999 !important;" class="z-3 header-area header-sticky wow slideInDown"
+  data-wow-duration="0.75s" data-wow-delay="0s">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav">
+          <a style="margin-top: 30px !important;" href="index.html" class="logo">
+            <div style=" display: flex; align-items: center; padding: 2px; border: 1px solid #40ff00;" class="flex">
+              <p style="color: white; font-size: 25px; padding: 0px 2px;  background: #40ff00;">
+                LearnHub
+              </p>
+            </div>
+
+          </a>
+          <ul class="nav">
+            <li class="scroll-to-section"><a routerLink="home">Home</a></li>
+            <li class="scroll-to-section"><a routerLink="course-home">Course</a></li>
+            <li class="scroll-to-section"><a routerLink="list-blogs">Blog</a></li>
+            <!-- <li class="scroll-to-section"><a routerLink="cart">
+                @if(isEmptyCart){
+                <img width="25" height="25" src="https://img.icons8.com/ios/25/000000/shopping-cart-loaded--v1.png"
+                  alt="shopping-cart-loaded--v1" />
+
+                } @else {
+                <img width="25" height="25" src="https://img.icons8.com/ios/25/add-shopping-cart--v1.png"
+                  alt="add-shopping-cart--v1" />
+                }</a></li> -->
+            @if (userInfo) {
+            <li>
+              <div class="dropdown">
+                <button
+                  style="border: none; padding: 5px 20px !important; color: white !important; background-color: #40ff00 !important;border-radius: 25px;"
+                  type="button" class="border-first-button" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+                  aria-haspopup="true" aria-expanded="false">
+                  <img style="    width: 30px;
+                  height: 30px;
+                  border-radius: 15px;" src={{userInfo.image}} alt="">
+                  <span style="margin-left: 10px;">{{userInfo.fullname}}</span>
+                </button>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                  <a class="dropdown-item" routerLink="userInfo">Info</a>
+                  <a class="dropdown-item" (click)="logout()">Logout</a>
+
+                </div>
+              </div>
+
+            </li>
+            <li style="padding-left: 5px;">
+              <button (click)="logout()" style="border: none; background-color: transparent;" type="button"
+                class="border-first-button" data-bs-toggle="modal" data-bs-target="#signin">
+                <a style="
+                 background-color: #b1b1b1 !important;
+                 border:1px solid #b1b1b1 !important; color: white !important;">Logout</a>
+              </button>
+            </li>
+            } @else {
+            <li>
+              <button style="border: none; background-color: transparent;" type="button" class="border-first-button"
+                data-bs-toggle="modal" data-bs-target="#signup">
+                <a style="
+                background-color: #40ff00 !important;
+                padding: 0px 20px !important; color: white !important;">Sign up</a>
+              </button>
+            </li>
+            <li style="padding-left: 5px;">
+              <button style="border: none; background-color: transparent;" type="button" class="border-first-button"
+                data-bs-toggle="modal" data-bs-target="#signin">
+                <a style="
+                 background-color: #b1b1b1 !important;
+                 border:1px solid #b1b1b1 !important; color: white !important;">Sign in</a>
+              </button>
+            </li>
+            }
+
+
+          </ul>
+          <a class='menu-trigger'>
+            <span>Menu</span>
+          </a>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="modal  fade" id="signup" tabindex="-1" aria-labelledby="signupLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Sign up</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 15px 40px;">
+        <div style="width: 100%; text-align: left;">Email</div>
+        <input placeholder="Email" (change)="onChange('email',$event)"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+        <div style="width: 100%; text-align: left;">Name</div>
+        <input (change)="onChange('name',$event)" placeholder="Name"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+        <div style="width: 100%; text-align: left;">Password</div>
+        <input (change)="onChange('password',$event)" placeholder="Password" type="password"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray;" />
+        <div style="width: 100%; margin-bottom: 20px; text-align: left;">Already have an account? <span
+            style="color: rgb(109, 109, 241);">Sign in</span></div>
+        <div style="width: 100%; text-align: left;"><button type=" button" class="login-with-google-btn">
+            Sign in with Google
+          </button></div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="onSignup()" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal  fade" id="signin" tabindex="-1" aria-labelledby="signinLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Sign in</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 15px 40px;">
+        <div style="width: 100%; text-align: left;">Email</div>
+        <input (change)="onChange('emailLogin',$event)" placeholder="Email"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+        <div style="width: 100%; text-align: left;">Password</div>
+        <input (change)="onChange('passwordLogin',$event)" placeholder="Password" type="password"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray;" />
+        <div (click)="onForgotPassword()"
+          style="width: 100%; text-align: left; color: rgb(109, 109, 241); margin-bottom: 20px;">Forgot password?
+        </div>
+        <div style="width: 100%; margin-bottom: 20px; text-align: left;">
+          Do not have an account? <span style="color: rgb(109, 109, 241);">Sign up</span></div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="onSignin()" data-bs-dismiss="modal" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+@if (isVerifyScreen) {
+<div style="display: block;" class="modal show" id="verify" tabindex="-1" aria-labelledby="verifyLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Verify your email</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 15px 40px;">
+
+        <div style="width: 100%; text-align: left;">OTP</div>
+        <input placeholder="OTP" (change)="onChange('otp',$event)"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="onVerifySignup()" data-bs-dismiss="modal" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+@if(isForgotPasswordScreen) {
+<div style="display: block;" class="modal show" id="verify" tabindex="-1" aria-labelledby="verifyLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Forgot password</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 15px 40px;">
+        <div style="width: 100%; text-align: left;">Email</div>
+        <input placeholder="Email" (change)="onChange('emailForgetPassword',$event)"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="onSubmitEmailForgetPassword()" data-bs-dismiss="modal"
+          class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+@if(isVerifyPasswordScreen) {
+<div style="display: block;" class="modal show" id="verify" tabindex="-1" aria-labelledby="verifyLabel"
+  aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Forgot password</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body" style="display: flex; flex-direction: column; align-items: center; justify-content: center;
+      padding: 15px 40px;">
+        <div style="width: 100%; text-align: left;">Email</div>
+        <input placeholder="Email" value={{emailForgetPassword}} readonly
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+        <div style="width: 100%; text-align: left;">Otp</div>
+        <input placeholder="Otp" (change)="onChange('otpForgetPassword',$event)"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+        <div style="width: 100%; text-align: left;">New Password</div>
+        <input placeholder="New Password" (change)="onChange('newPassword',$event)"
+          style="margin-bottom: 20px; width: 100%; height: 35px; border-radius: 5px; padding: 10px; border: 1px solid gray; " />
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button type="button" (click)="onSubmitVerifyPassword()" data-bs-dismiss="modal"
+          class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+}
+
+<div class="main-banner wow fadeIn" id="top" data-wow-duration="1s" data-wow-delay="0.5s">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="row">
+          <div class="col-lg-6 align-self-center">
+            <div class="left-content show-up header-text wow fadeInLeft" data-wow-duration="1s" data-wow-delay="1s">
+              <div class="row">
+                <div class="col-lg-12">
+                  <h6>LearnHub Education</h6>
+                  <h2>Your future depends on many things, but mostly on you</h2>
+                </div>
+                <div class="col-lg-12">
+                  <div class="border-first-button scroll-to-section">
+                    <a href="#contact">Contact us</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="right-image wow fadeInRight" data-wow-duration="1s" data-wow-delay="0.5s">
+              <img style="border-radius: 5px; box-shadow:rgba(99, 99, 99, 0.2) 0px 2px 8px 0px ;"
+                src="https://www.teachhub.com/wp-content/uploads/2020/05/Top-12-Pioneers-in-Education-scaled.jpg"
+                alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div id="courses" class="our-portfolio section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
+          <h6>Our Most Popular Courses</h6>
+          <h4>See Our Recent <em>Courses</em></h4>
+          <div class="line-dec"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container-fluid " data-wow-duration="1s" data-wow-delay="0.7s">
+    <ng-container *ngFor="let group of chunkArray(newRecommendedCourses.slice(0, 8), 4)">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="course-carousel"
+            style="display: flex; justify-content: flex-start; flex-wrap: wrap; margin-left: 150px; margin-right: 100px;">
+            <div *ngFor="let course of group; trackBy: trackByIdx" class="item col-lg-3">
+              <a [routerLink]="['courses/showSectionAndVideo', course.courseID]"
+                style="width: 287px; height: 368px; display: block;">
+                <div class="portfolio-item" style="width: 287px; height: 368px;">
+                  <div style="padding: 10px;" class="thumb">
+                    <img [src]="course.image || 'default-image-url'" alt=""
+                      style="width: 270px; height: 151px; object-fit: cover; border-radius: 2px;">
+                  </div>
+                  <div class="down-content"
+                    style="display: flex; text-align: left; padding: 5px 10px !important; justify-content: flex-start; flex-direction: column;">
+                    <p style="text-align: left;">{{ course.level }}</p>
+                    <h4>{{ course.courseTitle }}</h4>
+                    <p>{{course.courseDesY}}</p>
+                    <div style="display: flex; justify-content: flex-start; align-items: center;">
+                      <p style="margin-right: 5px; color: #40ff00;">{{ course.ratings }}</p>
+                      <span style="margin-right: 5px; display: flex;">
+                        <img *ngFor="let star of [1, 2, 3, 4]" width="20" height="20"
+                          src="https://img.icons8.com/fluency/20/star--v1.png" alt="star--v1" />
+                      </span>
+                      <span style="color: #b1b1b1;">({{ course.countRating }})</span>
+                    </div>
+                    <div style="display: flex; justify-content: space-between; align-items: center;">
+                      <div style="display: flex; justify-content: flex-start; align-items: center;">
+                        <!-- <div><img style="width: 50px;" width="50px"
+                            src="https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg?size=338&ext=jpg&ga=GA1.1.2113030492.1708819200&semt=ais"
+                            alt=""></div> -->
+                        <!-- <div style="color: black;">Jane Cooper</div> -->
+                      </div>
+                      <!-- <div style="color: #40ff00; font-weight: bold; font-size: 20px;">{{ course.coursePrice |
+                        currency:'VND':'symbol':'1.0-0' }}</div> -->
+
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+  </div>
+
+  <div class="container" style="margin-top: 50px;">
+    <div class="row">
+      <div class="col-lg-5">
+        <div class="section-heading wow fadeInLeft" data-wow-duration="1s" data-wow-delay="0.3s">
+          <h4>See Our Lowest Price <em>Courses</em></h4>
+          <div class="line-dec"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="container-fluid " data-wow-duration="1s" data-wow-delay="0.7s">
+        <ng-container *ngFor="let group of chunkArray(cheapHighQualityCourses.slice(0, 8), 4)">
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="course-carousel"
+                style="display: flex; justify-content: flex-start; flex-wrap: wrap; margin-left: 150px; margin-right: 100px;">
+                <div *ngFor="let course of group; trackBy: trackByIdx" class="item col-lg-3">
+                  <a [routerLink]="['courses/showSectionAndVideo', course.courseID]"
+                    style="width: 287px; height: 368px; display: block;">
+                    <div class="portfolio-item" style="width: 287px; height: 368px;">
+                      <div style="padding: 10px;" class="thumb">
+                        <img [src]="course.image || 'default-image-url'" alt=""
+                          style="width: 270px; height: 151px; object-fit: cover; border-radius: 2px;">
+                      </div>
+                      <div class="down-content"
+                        style="display: flex; text-align: left; padding: 5px 10px !important; justify-content: flex-start; flex-direction: column;">
+                        <p style="text-align: left;">{{ course.level }}</p>
+                        <h4>{{ course.courseTitle }}</h4>
+                        <p>{{course.courseDesY}}</p>
+                        <div style="display: flex; justify-content: flex-start; align-items: center;">
+                          <p style="margin-right: 5px; color: #40ff00;">{{ course.ratings }}</p>
+                          <span style="margin-right: 5px; display: flex;">
+                            <img *ngFor="let star of [1, 2, 3, 4]" width="20" height="20"
+                              src="https://img.icons8.com/fluency/20/star--v1.png" alt="star--v1" />
+                          </span>
+                          <span style="color: #b1b1b1;">({{ course.countRating }})</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                          <div style="display: flex; justify-content: flex-start; align-items: center;">
+                            <!-- <div><img style="width: 50px;" width="50px"
+                                src="https://img.freepik.com/premium-vector/user-profile-icon-flat-style-member-avatar-vector-illustration-isolated-background-human-permission-sign-business-concept_157943-15752.jpg?size=338&ext=jpg&ga=GA1.1.2113030492.1708819200&semt=ais"
+                                alt=""></div> -->
+                            <!-- <div style="color: black;">LEARNHUB</div> -->
+                          </div>
+                          <!-- <div style="color: #40ff00; font-weight: bold; font-size: 20px;">{{ course.coursePrice |
+                            currency:'VND':'symbol':'1.0-0' }}</div> -->
+                        </div>
+                      </div>
+                    </div>
+                  </a>
+                  <!-- <div class="save-for-later-btn">
+                    <a class="btn btn-icon btn-outline-primary rounded-circle save-for-later-btn" href="#"
+                      data-toggle="tooltip" data-placement="top" title="Save for later" tabindex="0"
+                      data-original-title="Save for later">
+                      <i class="fas fa-heart"></i>
+                    </a>
+
+                  </div> -->
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </ng-container>
+      </div>
+
+    </div>
+  </div>
+
+</div>
+
+User
+
+<div id="blog" class="blog">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-heading  wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s">
+          <h6>Recent News</h6>
+          <h4>Check Our Blog</h4>
+          <div class="line-dec"></div>
+        </div>
+      </div>
+      <div class="col-lg-6 show-up wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s"
+        *ngIf="blogs && blogs.length > 0">
+        <a style="margin-bottom: 20px;" [routerLink]="['blogs/', blogs[0].id]">
+
+          <div class="blog-post">
+            <div class="thumb">
+              <a href="#"><img [src]="blogs[0].imageUrl" alt=""></a>
+            </div>
+            <div class="down-content">
+              <span class="category">{{ blogs[0]?.categoryName }}</span>
+              <span class="date">{{ blogs[0]?.createdDate }}</span>
+              <a href="#">
+                <h4>{{ blogs[0]?.title }}</h4>
+              </a>
+              <span class="author"><img src="assets/images/author-post.jpg" alt="">By: Andrea Mentuzi</span>
+              <div class="border-first-button"><a href="#">Discover More</a></div>
+            </div>
+          </div>
+        </a>
+
+      </div>
+
+
+      <div class="col-lg-6 wow fadeInUp" style="z-index: 9999 !important;" data-wow-duration="1s" data-wow-delay="0.3s">
+        <div class="blog-posts">
+          <div class="row">
+            <a style="margin-bottom: 20px;" [routerLink]="['blogs/', blogs[1].id]">
+              <div class="col-lg-12" style="margin-bottom: 20px;">
+                <div class="post-item">
+                  <div class="thumb">
+                    <a href="#"><img [src]="blogs[1]?.imageUrl" alt="" class="small-image"></a>
+                  </div>
+                  <div class="right-content">
+                    <span class="category">{{ blogs[1]?.categoryName }}</span>
+                    <span class="date">{{ blogs[1]?.createdDate }}</span>
+                    <a href="#">
+                      <h4>{{blogs[1].title}}</h4>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </a>
+
+            <a style="margin-bottom: 20px;" [routerLink]="['blogs/', blogs[3].id]">
+              <div class="col-lg-12" style="margin-bottom: 20px;">
+
+                <div class="post-item">
+                  <div class="thumb">
+                    <a href="#"><img [src]="blogs[3]?.imageUrl" alt="" class="small-image"></a>
+                  </div>
+                  <div class="right-content">
+                    <span class="category">{{ blogs[3]?.categoryName }}</span>
+                    <span class="date">{{ blogs[1]?.createdDate }}</span>
+                    <a href="#">
+                      <h4>{{blogs[3].title}}</h4>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </a>
+            <a style="margin-bottom: 20px;" [routerLink]="['blogs/', blogs[2].id]">
+              <div class="col-lg-12">
+
+                <div class="post-item last-post-item">
+                  <div class="thumb">
+                    <a href="#"><img [src]="blogs[2]?.imageUrl" alt="" class="small-image"></a>
+                  </div>
+                  <div class="right-content">
+                    <span class="category">{{ blogs[2]?.categoryName }}</span>
+                    <span class="date">{{ blogs[2]?.createdDate }}</span>
+                    <a href="#">
+                      <h4>{{blogs[2].title}}</h4>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

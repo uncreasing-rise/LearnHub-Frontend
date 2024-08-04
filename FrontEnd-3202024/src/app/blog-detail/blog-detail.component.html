@@ -1,0 +1,31 @@
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12" style="margin-top: 150px; margin-bottom: 30px;">
+            <div class="section-heading wow fadeInDown" data-wow-duration="1s" data-wow-delay="0.5s" style="margin-bottom: 20px;">
+                <h6>Recent News</h6>
+                <h4>Check Our Blog</h4>
+                <div class="line-dec"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 show-up wow fadeInUp" data-wow-duration="1s" data-wow-delay="0.3s">
+            <div class="blog-post">
+                <div class="thumb">
+                    <a href="#"><img style="height: 300px; width: 100%; margin-top: 50px;" src={{blog.imageUrl}} alt=""></a>
+                </div>
+                <div class="down-content">
+                    <span class="category">{{ blog.categoryName }}</span>
+                    <span class="date">{{ blog.createdDate }}</span>
+                    <a href="#">
+                        <h4>{{ blog.title }}</h4>
+                    </a>
+                    <p>{{ blog?.description }}</p>
+                    <span class="author"><img src="assets/images/author-post.jpg" alt="">By: Andrea Mentuzi</span>
+                    <div class="border-first-button"><a href="#">Discover More</a></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

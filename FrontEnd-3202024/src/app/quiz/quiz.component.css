@@ -1,0 +1,93 @@
+.correct-answer {
+    color: green;
+    /* Tô xanh cho đáp án đúng */
+}
+
+.incorrect-answer {
+    color: red;
+    /* Tô đỏ cho đáp án chọn sai */
+}
+.default-answer 
+{color: black;}
+/* Modal */
+.modal {
+    display: none; /* Ẩn modal mặc định */
+    position: fixed; /* Vị trí cố định khi cuộn trang */
+    z-index: 1; /* Hiển thị modal trên tất cả các phần khác */
+    left: 0;
+    top: 0;
+    width: 100%; /* Chiều rộng toàn màn hình */
+    height: 100%; /* Chiều cao toàn màn hình */
+    overflow: auto; /* Cuộn khi modal quá dài */
+    background-color: rgb(0,0,0); /* Màu nền */
+    background-color: rgba(0,0,0,0.4); /* Màu nền với opacity */
+  }
+  
+  /* Nội dung modal */
+  .modal-content {
+    background-color: #fefefe;
+    margin: 15% auto; /* Canh giữa trên và dưới, canh lề trái và phải tự động */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%; /* Chiều rộng của nội dung modal */
+  }
+  
+  /* Close button */
+  .close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+  }
+  
+  .close:hover,
+  .close:focus {
+    color: black;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  /* Style for table headers */
+thead {
+  background-color: #f2f2f2;
+}
+
+th {
+  padding: 10px;
+  text-align: center;
+}
+
+/* Style for buttons */
+button {
+  background-color: #4caf50;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #45a049;
+}
+
+/* Style for quiz questions */
+h2 {
+  margin-bottom: 10px;
+}
+
+h3 {
+  margin-top: 20px;
+  margin-bottom: 5px;
+}
+
+/* Style for quiz options */
+label {
+  display: block;
+  margin-bottom: 5px;
+}
+
+/* Style for quiz submission button */
+.submit-button {
+  margin-top: 20px;
+}

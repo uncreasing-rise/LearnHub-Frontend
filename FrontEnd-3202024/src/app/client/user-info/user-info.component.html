@@ -1,0 +1,89 @@
+<div class="container mt-5">
+    <div class="row"  >
+        <div class="col-lg-4 pb-5">
+            <!-- Account Sidebar-->
+            <div class="author-card pb-3" style="margin-top: 120px;">
+                <div class="author-card-cover" style="background-image: url(https://bootdey.com/img/Content/flores-amarillas-wallpaper.jpeg);"><a class="btn btn-style-1 btn-white btn-sm" href="#" data-toggle="tooltip" title="" data-original-title="You currently have 290 Reward points to spend"><i class="fa fa-award text-md"></i>&nbsp;290 points</a></div>
+                <div class="author-card-profile">
+                    <div class="author-card-avatar"><img src="{{userInfo?.image}}" alt="{{userInfo?.image}}"> 
+                    </div>
+                    
+                    <div class="author-card-details">
+                        <h5 class="author-card-name text-lg">{{userInfo?.fullname}}</h5><span class="author-card-position">Joined February 06, 2017</span>
+                    </div>
+
+                    
+                </div>
+                <!-- <div class="col-12">
+                    <hr class="mt-2 mb-3">
+                    <div class="d-flex flex-wrap justify-content-between align-items-center">
+                        <input type="file" (change)="onFileSelected($event)">
+                        <button class="btn btn-style-1 btn-primary" type="button" (click)="onUpdateImage()">Update Image</button>
+                    </div>
+                </div> -->
+                
+                
+            
+            </div>
+            
+            <div class="wizard">
+                <nav class="list-group list-group-flush">
+                    
+                    <a class="list-group-item active" href="#"><i class="fe-icon-user text-muted"></i>Profile Settings</a>
+                    <div class="list-group-item" routerLink="/my-wishlist">
+                        <div class="d-flex justify-content-between align-items-center">
+                          <div>
+                            <i class="fe-icon-heart mr-1 text-muted" style="cursor: auto;"></i>
+                            <div class="d-inline-block font-weight-medium text-uppercase">My Wishlist</div>
+                          </div>
+                          <span class="badge badge-secondary">3</span>
+                        </div>
+                      </div>
+                      
+                
+                </nav>
+            </div>
+        </div>
+       <!-- Profile Settings-->
+<div class="col-lg-8 pb-5" style="margin-top: 120px;">
+    <form class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="account-fn">Full Name</label>
+                <input (change)="handleUpdateInfo('fullname',$event)" class="form-control" type="text"value={{userInfo.fullname}} id="account-fn" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="account-email">E-mail Address</label>
+                <input class="form-control" type="email" id="account-email" [value]="userInfo?.email" disabled>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label for="account-email">Role</label>
+                <input class="form-control" type="email" id="account-email" [value]="userInfo?.role" disabled>
+            </div>
+        </div>
+        <div class="col-12">
+            <hr class="mt-2 mb-3">
+            <div class="d-flex flex-wrap justify-content-between align-items-center">
+                <button class="btn btn-style-1 btn-primary" type="button" (click)="onUpdateUserInfo()">Update Profile</button>
+            </div>
+        </div>
+        <div class="col-md-6" style="margin-top: 12px;">
+            <div class="form-group">
+                <label for="account-email">My Wishlist</label>
+                <ul>
+                    <li *ngFor="let item of wishlistList">
+                        {{ item.courseTitle }} <!-- Assuming 'courseName' is a property of your WishlistItem -->
+                    </li>
+                </ul>
+            </div>
+        </div>
+s        
+    </form>
+</div>
+
+    </div>
+</div>
